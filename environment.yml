@@ -1,0 +1,6 @@
+name: tmp_pre-commit
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - conda-lock

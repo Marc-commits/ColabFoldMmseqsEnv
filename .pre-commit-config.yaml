@@ -1,0 +1,28 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+    -   id: trailing-whitespace
+    -   id: end-of-file-fixer
+    -   id: check-yaml
+    -   id: check-added-large-files
+-   repo: local
+    hooks:
+        # check conda environments
+        # will be slow for multiple staged environments, so better only modify/stage one
+        # https://stackoverflow.com/questions/77245249/using-pre-commit-tool-is-there-a-way-to-pass-filenames-one-by-one-to-the-entry
+      - id: conda-check-env-file
+        name: conda-check-env-file
+        entry: conda env create --solver=libmamba -df
+        language: system
+        verbose: true
+        fail_fast: true
+        files: mmseqs2.yaml
+      - id: conda-lock
+        name: conda-lock
+        entry: conda-lock -k explicit -p linux-64 -f
+        language: conda
+        verbose: true
+        files: mmseqs2.yaml
