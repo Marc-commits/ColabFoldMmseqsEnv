@@ -19,5 +19,5 @@ repos:
         language: conda
         verbose: true
         fail_fast: true
-        files: \.yaml$|\.lock$
+        files: \.yaml$
         exclude: .pre-commit-config.yaml
