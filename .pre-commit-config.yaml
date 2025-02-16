@@ -22,7 +22,7 @@ repos:
         files: mmseqs2.yaml
       - id: conda-lock
         name: conda-lock
-        entry: conda-lock -k explicit -p linux-64 -f
+        entry: conda-lock -k explicit -p linux-64 --micromamba -f
         language: conda
         verbose: true
         files: mmseqs2.yaml
