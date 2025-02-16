@@ -15,14 +15,9 @@ repos:
         # https://stackoverflow.com/questions/77245249/using-pre-commit-tool-is-there-a-way-to-pass-filenames-one-by-one-to-the-entry
       - id: conda-check-env-file
         name: conda-check-env-file
-        entry: conda env create --solver=libmamba -df
-        language: system
-        verbose: true
-        fail_fast: true
-        files: mmseqs2.yaml
-      - id: conda-lock
-        name: conda-lock
-        entry: conda-lock -k explicit -p linux-64 --micromamba -f
+        entry: bash -c 'for x in "$@"; do conda env create --solver=libmamba -df "$x"; done' --
         language: conda
         verbose: true
-        files: mmseqs2.yaml
+        fail_fast: true
+        files: \.yaml$|\.lock$
+        exclude: .pre-commit-config.yaml

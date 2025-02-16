@@ -3,5 +3,4 @@ channels:
   - defaults
   - conda-forge
 dependencies:
-  - conda-lock
-  - micromamba
+  - libmamba
